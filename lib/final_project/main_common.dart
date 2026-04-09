@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'ui/screens/map/map_screen.dart';
 import 'ui/screens/pass/pass_screen.dart';
 import 'ui/screens/profile/profile_screen.dart';
-
+import 'ui/theme/theme.dart';
 // void mainCommon(List<InheritedProvider> providers) {
 //   runApp(
 //     MultiProvider(
@@ -12,7 +12,7 @@ import 'ui/screens/profile/profile_screen.dart';
 //   );
 // }
 void mainCommon() {
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // theme: appTheme,
+      theme: appTheme,
       home: Scaffold(
         // backgroundColor: settingsState.theme.backgroundColor,
         body: _pages[_currentIndex],
@@ -46,6 +46,8 @@ class _MyAppState extends State<MyApp> {
               _currentIndex = index;
             });
           },
+          selectedItemColor: AppColors.primaryLight,
+          unselectedItemColor: AppColors.textDark,
           // selectedItemColor: settingsState.theme.color,
           items: [
             BottomNavigationBarItem(
