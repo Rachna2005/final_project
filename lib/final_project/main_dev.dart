@@ -9,7 +9,6 @@ List<InheritedProvider> get devProviders {
   return [
     // 1 - Inject repositories
     Provider<StationRepository>(create: (_) => StationRepositoryFirebase()),
-    
   ];
 }
 
