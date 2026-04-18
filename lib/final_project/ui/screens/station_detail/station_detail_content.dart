@@ -15,7 +15,29 @@ class StationDetailContent extends StatelessWidget {
     final bikesState = vm.bikesState;
 
     return Scaffold(
-      appBar: AppBar(centerTitle: true,title: Text(stationState?.data?.name ?? "Station Detail"),
+      appBar: AppBar(
+        centerTitle: true,
+        title: stationState?.data == null
+            ? const Text("Station Detail")
+            : Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    stationState!.data!.name,
+                    style: AppTextStyles.title.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    stationState.data!.description,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
       ),
       
       body: (stationState == null || bikesState == null)

@@ -2,6 +2,7 @@ import '../../model/station.dart';
 
 class StationDto {
   static const String nameKey = 'name';
+  static const String descriptionKey = 'description';
   static const String latitudeKey = 'latitude';
   static const String longitudeKey = 'longitude';
   static const String totalSlotsKey = 'totalSlots';
@@ -9,6 +10,7 @@ class StationDto {
 
   static Station fromJson(String id, Map<String, dynamic> json) {
     assert(json[nameKey] is String);
+    assert(json[descriptionKey] is String);
     assert(json[latitudeKey] is num);
     assert(json[longitudeKey] is num);
     assert(json[totalSlotsKey] is int);
@@ -17,6 +19,7 @@ class StationDto {
     return Station(
       id: id,
       name: json[nameKey],
+      description: json[descriptionKey],
       latitude: (json[latitudeKey] as num).toDouble(),
       longitude: (json[longitudeKey] as num).toDouble(),
       totalSlots: json[totalSlotsKey],
@@ -27,6 +30,7 @@ class StationDto {
   static Map<String, dynamic> toJson(Station station) {
     return {
       nameKey: station.name,
+      descriptionKey: station.description,
       latitudeKey: station.latitude,
       longitudeKey: station.longitude,
       totalSlotsKey: station.totalSlots,

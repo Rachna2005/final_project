@@ -1,6 +1,7 @@
 class Station {
   final String id;
   final String name;
+  final String description;
   final double latitude;
   final double longitude;
   final int totalSlots;
@@ -13,5 +14,6 @@ class Station {
     required this.longitude,
     required this.totalSlots,
     required this.availableBikes,
+    required this.description,
   });
 }
