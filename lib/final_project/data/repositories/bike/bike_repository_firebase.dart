@@ -38,6 +38,16 @@ class BikeRepositoryFirebase extends BikeRepository {
       throw Exception('Failed to load bikes');
     }
   }
+  @override
+  Future<void> updateBikeStatus(String bikeId, String status) async {
+    final uri = Uri.https(baseUrl, '/bikes/$bikeId.json');
+
+    final res = await http.patch(uri, body: json.encode({"status": status}));
+
+    if (res.statusCode != 200) {
+      throw Exception("Failed to update bike");
+    }
+  }
 }
 
 

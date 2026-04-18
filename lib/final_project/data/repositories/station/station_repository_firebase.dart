@@ -47,4 +47,17 @@ class StationRepositoryFirebase extends StationRepository {
       throw Exception('Failed to load station');
     }
   }
+  @override
+  Future<void> updateAvailableBikes(String stationId, int value) async {
+    final uri = Uri.https(baseUrl, '/stations/$stationId.json');
+
+    final res = await http.patch(
+      uri,
+      body: json.encode({"availableBikes": value}),
+    );
+
+    if (res.statusCode != 200) {
+      throw Exception("Failed to update station");
+    }
+  }
 }

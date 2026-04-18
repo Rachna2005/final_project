@@ -43,7 +43,26 @@ class StationDetailViewModel extends ChangeNotifier {
 
     notifyListeners();
   }
+  Future<void> bookBike() async {
+    if (selectedBikeId == null || stationState?.data == null) return;
 
+    final station = stationState!.data!;
+
+    try {
+
+      await bikeRepo.updateBikeStatus(selectedBikeId!, "reserved");
+
+      await stationRepo.updateAvailableBikes(
+        station.id,
+        station.availableBikes - 1,
+      );
+      await load(station.id);
+      selectedBikeId = null;
+      notifyListeners();
+    } catch (e) {
+      print("Booking error: $e");
+    }
+  }
   void selectBike(String bikeId) {
     if (selectedBikeId == bikeId) {
       selectedBikeId = null;

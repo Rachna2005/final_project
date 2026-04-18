@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../ui/widgets/bike/bike_slot_tile.dart';
 import '../../theme/theme.dart';
+import '../booking/booking_screen.dart';
 import 'view_model/station_detail_view_model.dart';
 
 class StationDetailContent extends StatelessWidget {
@@ -143,7 +144,24 @@ class StationDetailContent extends StatelessWidget {
                   child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: vm.canBook ? () {} : null,
+                      onPressed: vm.canBook ? () async {
+                              final station = vm.stationState!.data!;
+                              final bikeId = vm.selectedBikeId!;
+
+                              final result = await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => BookingScreen(
+                                    bikeId: bikeId,
+                                    stationName: station.name,
+                                  ),
+                                ),
+                              );
+
+                              if (result == true) {
+                                vm.bookBike();
+                              }
+                            } : null,
                       child: const Text("Book Bike"
                       ,
                         style: AppTextStyles.button,
