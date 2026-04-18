@@ -29,6 +29,11 @@ class AppTextStyles {
     fontSize: 18,
   );
 
+  static const TextStyle button = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
+
   static TextStyle body = const TextStyle(
     fontSize: 14,
   ).copyWith(color: AppColors.textDark);
